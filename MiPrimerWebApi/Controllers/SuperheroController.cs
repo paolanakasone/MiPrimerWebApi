@@ -31,8 +31,14 @@ namespace MiPrimerWebApi.Controllers
             var superhero = context.Superhero.FirstOrDefault(s=>s.SuperheroId==id);
             return superhero;
         }
-                
 
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Superhero superhero)
+        {
+            context.Superhero.Add(superhero);
+            await context.SaveChangesAsync();
+            return Ok(superhero);
+        }
 
     }
 }
